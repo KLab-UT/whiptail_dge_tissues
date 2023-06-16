@@ -2,7 +2,7 @@
 
 ##This script is used for analyze the raw data to the gene count csv file and transcript count csv file
 ##First load all the module used in Alabama super computer. 
-source /opt/asn/etc/asn-bash-profiles-special/module.sh
+source /opt/asn/etc/asn-bash-profiles-special/modules.sh
 
 module load sra
 module load fastqc/0.10.1
@@ -23,7 +23,7 @@ echo $REF
 #make the directory
 #this is the working folder 
 WD=/scratch/Yifan/Lizard/whiptail
-#this is the rawdat folder
+#this is the rawdata folder
 RD=$WD/RawData
 #this is the folder for the data after trimmomatic
 CD=$WD/CleanData
@@ -76,7 +76,7 @@ tar cvzf $CS.gz $CS/*
 ##The second step is trimmomatic, which can cut the low quality of the reads and the adapters. the input is the raw data and the out put is trimmed paired end and unpaired end reads
 ## get the list of the raw data first. the list can be used for the for cycle laterly. 
 cd $RD
-ls | greap ".fq" | cut -d "_" -f 2 | sort | uniq > list
+ls | grep ".fq" | cut -d "_" -f 2 | sort | uniq > list
 cp list $WD
 #make sure you have the AdaptersToTrim_All.fa in the home diectory
 adapters=AdaptersToTrim_All.fa
