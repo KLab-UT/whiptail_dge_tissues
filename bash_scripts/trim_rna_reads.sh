@@ -1,3 +1,8 @@
+#!/bin/bash
+
+#We want to change the name of "whiptail_dge_working_directory" Sean needs to do this
+cd /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory
+
 {
 usage="$(basename "$0") [-h] [-l <SRA_list>] [-d <working_directory>]
 Script to perform raw read preprocessing using fastp
