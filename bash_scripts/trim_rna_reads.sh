@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#We want to change the name of "whiptail_dge_working_directory" Sean needs to do this
-cd /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory
+#cd into the raw data for the project
+cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_rna_reads
 
 {
 usage="$(basename "$0") [-h] [-l <SRA_list>] [-d <working_directory>]
@@ -37,6 +37,8 @@ module load multiqc/1.12
 module load fastp/0.20.1
 
 echo "create file storing environment"
+# Might need to change the name of the "whiptail_dge_working_directory" here!!!!!!!!!!!!
+cd ../whiptail_dge_working_directory
 mkdir -p sra_files
 mkdir -p raw_reads
 mkdir -p cleaned_reads/merged_reads
