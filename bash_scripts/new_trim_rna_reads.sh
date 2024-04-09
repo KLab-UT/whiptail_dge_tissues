@@ -1,18 +1,18 @@
 #!/bin/bash
 #cd into the raw data for the project
-cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_rna_reads
+cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_rna_reads/01.RawData/Am_06
 
 {
-usage="$(basename "$0") [-h] [-l <SRA_list>] [-d <working_directory>]
+	'''
+	'''
+usage="$(basename "$0") [-h] [-d <working_directory>]
 Script to perform raw read preprocessing using fastp
     -h show this help text
-    -l path/file to tab-delimitted sra list
     -d working directory"
 options=':h:l:d:'
 while getopts $options option; do
     case "$option" in
         h) echo "$usage"; exit;;
-	l) l=$OPTARG;;
 	d) d=$OPTARG;;
 	:) printf "missing argument for -%s\n" "$OPTARG" >&2; echo "$usage" >&2; exit 1;;
        \?) printf "illegal option: -%s\n" "$OPTARG" >&2; echo "$usage" >&2; exit 1;;
@@ -32,39 +32,13 @@ begin=`date +%s`
 
 echo "load required modules"
 module load fastqc/0.11.4
-module load multiqc/1.12
+# fastqc loads the html website
 module load fastp/0.20.1
 
 echo "create file storing environment"
 # Might need to change the name of the "whiptail_dge_working_directory" here!!!
 cd ../whiptail_dge_working_directory
-mkdir -p sra_files
-mkdir -p raw_reads
-mkdir -p cleaned_reads/merged_reads
-mkdir -p cleaned_reads/unmerged_reads
-
-echo "Downloading SRA files from the given list of accessions"
-module load sra-toolkit/3.0.2
-cd sra_files
-prefetch --max-size 800G -O ./ --option-file ../${l}
-ls | grep SRR > sra_list
-cd ..
-echo "SRA files were downloaded in current directory"
-echo ""
-
-echo "Getting fastq files from SRA files"
-cd sra_files
-while read i; do 
-	cd "$i" 
-	fastq-dump --split-files --gzip "$i".sra 
-	# the --split-files option is needed for PE data
-	mv "$i"*.fastq.gz ../../raw_reads/ 
-	cd ..
-done<sra_list
-cd ..
-module unload sra-toolkit/3.0.2
-echo "Done"
-
+# mkdir -p sra_files
 
 ###################################
 # Quality check of raw read files #
@@ -77,8 +51,7 @@ pwd
 while read i; do 
   	fastqc "$i"_1.fastq.gz # insert description here
   	fastqc "$i"_2.fastq.gz # insert description here
-done<../sra_files/sra_list
-multiqc . # insert description here
+done<../raw_reads
 cd ..
 
 ####################################################
@@ -90,16 +63,6 @@ cd raw_reads
 pwd
 ls *.fastq.gz | cut -d "." -f "1" | cut -d "_" -f "1" | sort | uniq > fastq_list
 while read z ; do 
-# Perform trimming
-# -----------------------------------------------
-# Insert description of -i and -I parameters here
-# Insert description of -m, --merged_out, --out1, and --out2 parameters here
-# Insert description of -e and -q here
-# Insert description of -u and -l here
-# Insert description of --adapter_sequence and --adapter_sequence_r2 here
-# Insert description of -M, -W, -5, and -3 here
-# Insert description of -c here
-# -----------------------------------------------
 fastp -i "$z"_1.fastq.gz -I "$z"_2.fastq.gz \
       -m --merged_out ${d}/cleaned_reads/merged_reads/"$z"_merged.fastq \
       --out1 ${d}/cleaned_reads/unmerged_reads/"$z"_unmerged1.fastq --out2 ${d}/cleaned_reads/unmerged_reads/"$z"_unmerged2.fastq \
@@ -127,6 +90,6 @@ cd ${d}/cleaned_reads/merged_reads
 pwd
 while read i; do 
 	fastqc "$i"_merged.fastq.gz # insert description here
-done<${d}/sra_files/sra_list
+done<${d}/raw_reads
 
- }r
+ }
