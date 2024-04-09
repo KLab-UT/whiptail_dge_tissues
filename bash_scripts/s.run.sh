@@ -9,3 +9,4 @@
 #SBATCH -e slurm-%j.err-%N
 
 bash environment_setup.sh
+bash trims_rna_reads.sh
