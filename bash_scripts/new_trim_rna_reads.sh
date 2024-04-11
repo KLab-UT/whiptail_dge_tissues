@@ -4,8 +4,10 @@
 cd /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/raw_reads
 ## Move all of the raw reads from this directory into $d/raw_reads
 ## MOVE not COPY
-pwd
-{
+
+echo ""
+echo "Beginning script"
+echo ""
 usage="$(basename "$0") [-h] [-d <working_directory>]
 Script to perform raw read preprocessing using fastp
     -h show this help text
@@ -24,29 +26,29 @@ done
 begin=`date +%s`
 
 echo "load required modules"
+echo ""
 module load fastqc/0.11.4
 # fastqc loads the html website
 module load fastp/0.20.1
 
 echo "create file storing environment"
+echo ""
 # Might need to change the name of the "whiptail_dge_working_directory" here!!!
 ###################################
 # Quality check of raw read files #
 ###################################
 
-echo "Perform quality check of raw read files"
+echo "Perform quality check of raw read files\n"
+echo ""
 
 ls *.fq.gz | cut -d "_" -f 1,2  | uniq > sample_list.txt
 
-pwd
-ls
-pwd
 while read i; do 
   	fastqc "$i"_1.fq.gz # insert description here
   	fastqc "$i"_2.fq.gz # insert description here
-done<../sample_list.txt
+done<sample_list.txt
 cd ..
-
+pwd
 ####################################################
 # Trimming downloaded Illumina datasets with fastp #
 ####################################################
@@ -92,6 +94,3 @@ done<${d}/raw_reads
 
 module unload fastqc/0.11.4
 module unload fastp/0.20.1
-
-
- }
