@@ -1,7 +1,7 @@
 #!/bin/bash
 #cd into the raw data for the project
 
-cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_rna_reads/01.RawData/Am_06/
+cd /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/raw_reads
 ## Move all of the raw reads from this directory into $d/raw_reads
 ## MOVE not COPY
 pwd
@@ -36,8 +36,7 @@ echo "create file storing environment"
 
 echo "Perform quality check of raw read files"
 
-cd $d/raw_reads
-ls *.fq.gz | cut -d "_" -f 1,2 | uniq > sample_list.txt
+ls *.fq.gz | cut -d "_" -f 1,2  | uniq > sample_list.txt
 
 pwd
 ls
