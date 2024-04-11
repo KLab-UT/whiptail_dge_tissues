@@ -86,4 +86,13 @@ while read i; do
 	fastqc "$i"_merged.fastq.gz # insert description here
 done<${d}/raw_reads
 
+
+######################
+# Unload all modules #
+######################
+
+module unload fastqc/0.11.4
+module unload fastp/0.20.1
+
+
  }
