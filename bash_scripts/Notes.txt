@@ -1,0 +1,7 @@
+4/9/2024
+
+The command we are using to run this script is: 
+bash /uufs/chpc.utah.edu/common/home/u6057891/whiptail_dge_tissues/bash_scripts/new_trim_rna_reads.sh
+1. At this point in time, we need to move all of the data from the 'shared_data" directory into our wokring directory
+2. After moving all of the data, we need to rethink our paths to this data
+

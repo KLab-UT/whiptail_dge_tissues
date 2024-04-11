@@ -1,10 +1,11 @@
 #!/bin/bash
 #cd into the raw data for the project
-cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_rna_reads/01.RawData/Am_06
 
+cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_rna_reads/01.RawData/Am_06/
+## Move all of the raw reads from this directory into $d/raw_reads
+## MOVE not COPY
+pwd
 {
-	'''
-	'''
 usage="$(basename "$0") [-h] [-d <working_directory>]
 Script to perform raw read preprocessing using fastp
     -h show this help text
@@ -19,14 +20,6 @@ while getopts $options option; do
      esac
 done
 
-echo $l
-echo $d
-
-# mandatory arguments
-if [ ! "$l" ] || [ ! "$d"]; then
-    echo "arguments -l and -d must be provided"
-    echo "$usage" >&2; exit 1
-fi
 
 begin=`date +%s`
 
@@ -37,21 +30,22 @@ module load fastp/0.20.1
 
 echo "create file storing environment"
 # Might need to change the name of the "whiptail_dge_working_directory" here!!!
-cd ../whiptail_dge_working_directory
-# mkdir -p sra_files
-
 ###################################
 # Quality check of raw read files #
 ###################################
 
 echo "Perform quality check of raw read files"
-cd raw_reads
+
+cd $d/raw_reads
+ls *.fq.gz | cut -d "_" -f 1,2 | uniq > sample_list.txt
+
+pwd
 ls
 pwd
 while read i; do 
-  	fastqc "$i"_1.fastq.gz # insert description here
-  	fastqc "$i"_2.fastq.gz # insert description here
-done<../raw_reads
+  	fastqc "$i"_1.fq.gz # insert description here
+  	fastqc "$i"_2.fq.gz # insert description here
+done<../sample_list.txt
 cd ..
 
 ####################################################
@@ -61,9 +55,9 @@ cd ..
 echo "Trimming downloaded Illumina datasets with fastp."
 cd raw_reads
 pwd
-ls *.fastq.gz | cut -d "." -f "1" | cut -d "_" -f "1" | sort | uniq > fastq_list
+ls *.fq.gz | cut -d "." -f "1" | cut -d "_" -f "1" | sort | uniq > fastq_list
 while read z ; do 
-fastp -i "$z"_1.fastq.gz -I "$z"_2.fastq.gz \
+fastp -i "$z"_1.fq.gz -I "$z"_2.fq.gz \
       -m --merged_out ${d}/cleaned_reads/merged_reads/"$z"_merged.fastq \
       --out1 ${d}/cleaned_reads/unmerged_reads/"$z"_unmerged1.fastq --out2 ${d}/cleaned_reads/unmerged_reads/"$z"_unmerged2.fastq \
       -e 25 -q 15 \
