@@ -1,7 +1,6 @@
 #!/bin/bash
 #cd into the raw data for the project
 
-cd /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/raw_reads
 ## Move all of the raw reads from this directory into $d/raw_reads
 ## MOVE not COPY
 
@@ -25,6 +24,18 @@ done
 
 begin=`date +%s`
 
+echo "copy over raw reads for this project"
+cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_rna_reads/01.RawData
+for i in {01..15}
+do
+	cp Am_$i/*.gz $d/raw_reads
+done
+for i in {25..27}
+do
+	cp Am_$i/*.gz $d/raw_reads
+done
+
+
 echo "load required modules"
 echo ""
 module load fastqc/0.11.4
@@ -33,13 +44,14 @@ module load fastp/0.20.1
 
 echo "create file storing environment"
 echo ""
-# Might need to change the name of the "whiptail_dge_working_directory" here!!!
+
 ###################################
 # Quality check of raw read files #
 ###################################
-
 echo "Perform quality check of raw read files\n"
 echo ""
+
+cd /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/raw_reads
 
 ls *.fq.gz | cut -d "_" -f 1,2  | uniq > sample_list.txt
 
@@ -47,16 +59,13 @@ while read i; do
   	fastqc "$i"_1.fq.gz # insert description here
   	fastqc "$i"_2.fq.gz # insert description here
 done<sample_list.txt
-cd ..
-pwd
+
 ####################################################
 # Trimming downloaded Illumina datasets with fastp #
 ####################################################
 
 echo "Trimming downloaded Illumina datasets with fastp."
-cd raw_reads
-pwd
-ls *.fq.gz | cut -d "." -f "1" | cut -d "_" -f "1" | sort | uniq > fastq_list
+ls *.fq.gz | cut -d "." -f "1" | cut -d "_" -f "1,2" | sort | uniq > fastq_list
 while read z ; do 
 fastp -i "$z"_1.fq.gz -I "$z"_2.fq.gz \
       -m --merged_out ${d}/cleaned_reads/merged_reads/"$z"_merged.fastq \
