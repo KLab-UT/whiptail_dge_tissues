@@ -32,17 +32,22 @@ echo ""
 cd "${d}"
 bwa index "${g}"
 
+#test
+echo "test1"
 # Align merged reads against reference
 echo "Aligning Merged Reads against Reference with bwa mem, using $t threads."
 echo ""
 
 cd "${w}/cleaned_reads/merged_reads"
 for merged_read in *.fastq.gz; do
-    sample_name="${merged_read%%_*}"
-    bwa mem "${d}/Reference/${g}" "${merged_read}" > "${w}/mapped_reads/${sample_name}_mapped.sam"
-    samtools sort "${w}/mapped_reads/${sample_name}_mapped.sam" > "${w}/mapped_reads/${sample_name}_sorted.bam" -@ "${t}"
+    sample_name=$(echo $merged_read | cut -d "_" -f "1,2" )
+    bwa mem "${g}" $merged_read > "${w}/mapped_reads/${sample_name}_merged_mapped.sam"
+    bwa mem "${g}" ../unmerged_reads/"${sample_name}"_unmerged1.fastq ../unmerged_reads/"${sample_name}"_unmerged2.fastq > "${w}/mapped_reads/${sample_name}_unmerged_mapped.sam"
+    samtools sort "${w}/mapped_reads/${sample_name}_merged_mapped.sam" > "${w}/mapped_reads/${sample_name}_merged_sorted.bam" -@ "${t}"
+    samtools sort "${w}/mapped_reads/${sample_name}_unmerged_mapped.sam" > "${w}/mapped_reads/${sample_name}_unmerged_sorted.bam" -@ "${t}"
 done
-
+#test2
+echo "test2"
 # Unload modules
 module unload bwa/2020_03_19
 module unload samtools/1.16
