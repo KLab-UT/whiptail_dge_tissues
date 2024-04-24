@@ -64,4 +64,4 @@ bash merge_merged_and_unmerged_merges.sh
 bash count_reads.sh
 
 #Lastly, Dr. Klabacka helped us with some different statistical analyses, then we used R to generate several graphs.
-# The R Script used can be found in the github repo, named "whiptail_dge_R_analysis.r"
+# The R Script used can be found in the github repo, named "whiptail_dge_R_volcano_plot.r"
