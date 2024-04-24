@@ -1,4 +1,5 @@
 #!/bin/bash
+# This file maps the reads to the reference genome
 
 {
 usage="$(basename "$0") [-h][-g <reference_genome>][-w <working_directory>] [-t <number_of_processors>]"
