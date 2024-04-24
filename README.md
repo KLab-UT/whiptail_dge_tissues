@@ -5,13 +5,22 @@ This is a project for the Advanced Bioinformatics course at Utah Tech University
 Authors: Syrus Miner, Baylee Christensen, Seun Onileowo
 
 Completed: April 2024
+# Contents
+- [Abstract] (#abstract)
+- [Introduction] (#program_requirements)
+- [Instructions] (#instructions)
+
+## Abstract
+Understanding gene expression across different tissue types is a crucial step to unravel underlying physiological functions between tissues. This research addresses the unique gene expression profiles of heart, skeletal muscle, and lung tissues by accessing RNA-Seq data from a cohort of individuals of the species Aspidoscelis tesselatus. This species is particularly interesting to study due to their asexuality, reproducing through parthenogenesis. We utilized advanced bioinformatics tools such as fastp for trimming to extract quality reads, STAR for read mapping to Aspidoscelis marmoratus, and featureCounts to count the number of RNA transcripts mapped. The results of this analysis can help us identify and compare differential gene patterns among these tissues.
+
+
 ## Things to note and program requirements
 1. You must have access to the chpc supercomputer. Otherwise, you will have to manually install all of the python packages required to do the trimming. 
 2. You must have access to the Utah Tech scratch directory. This will vary for each individual during each year. Our directory appears like the following for this dataprocess:
 ```
 /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory
 ```
-3. There must be data in the directories you are working with. You will need a reference genome, which we gathered from Dr. Klabacka, and also the tissue data we are doing the actualy analysis on.
+3. There must be data in the directories you are working with. You will need a reference genome, which we gathered from Dr. Klabacka, and also the tissue data we are doing the actual analysis on.
 4. You must clone this GitHub repository, and instructions on how to do so are listed below
 
 # Instructions
@@ -40,7 +49,7 @@ Where did you clone this github repository? That is now your working directory. 
 ### Step 3: Running the script
 1. The script that you should use to run the sbatch is as follows:
 ```
-sbatch s.run.sh /path/to/github/repository/clone/bash
+sbatch s.run.sh -d /path/to/github/repository/clone/bash
 ```
 2. Ideally, this submits all of the jobs at once. It won't in this case, please view s.run.sh to see what line needs to be changed based off of your preferences. 
 
