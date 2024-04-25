@@ -1,3 +1,5 @@
+# R Analysis of the outputted results to make volcano plot
+
 # Loading relevant libraries 
 library(tidyverse) # includes ggplot2, for data visualisation. dplyr, for data manipulation.
 library(RColorBrewer) # for a colourful plot
@@ -21,7 +23,8 @@ theme_set(
     theme(
       axis.title.y = element_text(face = "bold", margin = margin(0,20,0,0), size = rel(1.0), color = 'black'),
       axis.title.x = element_text(hjust = 0.5, face = "bold", margin = margin(20,0,0,0), size = rel(1.0), color = 'black'),
-      plot.title = element_text(hjust = 0.5)
+      plot.title = element_text(hjust = 0.5),
+      legend.key.size = unit(3, 'lines')
     )
 )
 
@@ -30,11 +33,16 @@ p1 <- ggplot(data = df, aes(x = logFC, y = -log10(adj.P.Val), col = diffexpresse
   geom_point() +
   scale_color_manual(values = c("#003058", "grey", "#BA1C21"),
                      labels = c("Downregulated", "Not Significant", "Upregulated")) +
+	  # Enter Title Here
   ggtitle('Gene expression differences between Skeletal and Liver Muscle') +
   labs(color = 'Differential Expression') +
   geom_vline(xintercept = c(-0.6, 0.6), col = "black", linetype = 'dashed') +
   geom_hline(yintercept = -log10(0.08), col = "black", linetype = 'dashed') +
-  geom_text_repel(max.overlaps = Inf)
+  # Spreads out the name of the significant genes
+  geom_text_repel(data = subset(df, diffexpressed != "NO"), aes(label = delabel), size = 5, max.overlaps = Inf, box.padding = .5, point.padding=.5)+
+  # Puts in ticks on x and y axis
+  scale_x_continuous(breaks = se(-20, 20, by = 2)) +
+  scale_y_continuous(breaks = seq(0, 20, by = 20))
 
 # Make sure you rename the pdf to your desired file name.
 ggsave("LiverSkelMusc.pdf",p1, width=5, height=5, units="in", scale=3)
