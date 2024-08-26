@@ -1,0 +1,6 @@
+26 Aug 2024
+Baylee is going to look into using BCFtools to call SNPs from the BAM files. To do this, check out the bcftools documentation: https://samtools.github.io/bcftools/howtos/variant-calling.html
+From the output bcf file (or vcf file), we will want to exclude all genes not targetting the mitochondrion. We will use MiCFiG to provide the regions of interest, and then we can use the coordinates of those regions to filter the vcf file.
+From there, we will want to combine the vcf data (the snp data) with the gene count data to identify regions where there has been allele-biased expression.
+Action items just for this week:
+call variants
