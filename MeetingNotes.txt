@@ -4,3 +4,5 @@ From the output bcf file (or vcf file), we will want to exclude all genes not ta
 From there, we will want to combine the vcf data (the snp data) with the gene count data to identify regions where there has been allele-biased expression.
 Action items just for this week:
 call variants
+
+
