@@ -13,7 +13,8 @@
 # Author: Baylee Christensen
 # Date: 09/03/2024
 # Description: This script searches for the bam file pattern previously generated, and runs the variant caller between the bam files and the a.marmoratus fasta file
-# Usage: nohup bash 00_grab_bam.sh <path/to/github/dir>
+# Usage for cmd line: nohup bash 00_call_variants.sh <path/to/mapped_reads/dir>
+# Usage for sbatch: sbatch 00_call_variants.sh <path/to/mapped_reads/dir>
 
 
 module load bcftools/1.16
