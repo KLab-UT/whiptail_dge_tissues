@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#SBATCH --account=utu_4310
+#SBATCH --account=utu
 #SBATCH --partition=lonepeak
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=99:00:00
+#SBATCH --time=19:00:00
 #SBATCH -o out.varcalling-%j.txt-%N
 #SBATCH -e err.varcalling-%j.txt-%N
 
