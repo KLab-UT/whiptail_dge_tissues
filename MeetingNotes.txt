@@ -1,7 +1,20 @@
 05 Sep 2024
 
-Use the function "hard-variant-filtration" on this script to model how you will filter variants:
-https://github.com/rklabacka/ThamnophisElegans_FunctionalGenomics2021/blob/main/Examining-Sequence-Variation/reads2vcf/reads2vcf.sh
+We need to:
+1- filter variants for quality
+2- convert the MiCFiG GFF to a BED file
+3- filter variants for position
+
+Useful code for each of these can be found on an old script I wrote: https://bedops.readthedocs.io/en/latest/content/installation.html#linux
+
+For step 1, use the function "hard-variant-filtration" function to filter variants (you can skip step 3).
+
+For step 2, convert the GFF from MiCFiG to a BED file. You can do this using bedops, then you need to bgzip and index it. All of this done in the function "probes2gff" (after the "# Use bedops to convert gff to bed" comment).
+
+For step 3, we will want two resulting files: (i) variants in mitochondrial-targetting genes [those specified in the MiCFiG GFF] and (ii) variants in all other genes [all genes not specified in the MiCFiG GFF]
+
+Use the "annotate-variants" function to filter variants based on genes of interest. The awk command at the end of the script removes all variants lacking annotation. You can modify this to exclude any variants containing annotations. Doing both of these will allow you to get both of the vcf files that we need.
+
 
 03 Sep 2024
 
