@@ -1,10 +1,14 @@
-03 Sep 2024
+05 Sep 2024
 
+Use the function "hard-variant-filtration" on this script to model how you will filter variants:
+https://github.com/rklabacka/ThamnophisElegans_FunctionalGenomics2021/blob/main/Examining-Sequence-Variation/reads2vcf/reads2vcf.sh
+
+03 Sep 2024
 
 Baylee's addition:
 The purpose of this research is to find the differences in mitochondrial gene expression from the paternal vs. maternal lineage. A. Scalaris and A. Marmoratus came together and produces the asexual species A. tesselatus. A tesselatus retains the paternal alleles of the mitochondrial genes, so we are doing this research to determine if these expression levels are different with genes that originate from both the maternal and paternal alleles.
 We will not be able to separate all gene expression levels based of the maternal/paternal allele, because we are using a variant caller to see the differences between tesselatus and marmoratus. The SNPS with variants are those that we know originate from scalaris. Some gene expression levels we will be unable to distinguish from another in the scenarios where mamoratus and tesselatus have no mutations between the genes.
- 
+
 26 Aug 2024
 Baylee is going to look into using BCFtools to call SNPs from the BAM files. To do this, check out the bcftools documentation: https://samtools.github.io/bcftools/howtos/variant-calling.html
 From the output bcf file (or vcf file), we will want to exclude all genes not targetting the mitochondrion. We will use MiCFiG to provide the regions of interest, and then we can use the coordinates of those regions to filter the vcf file.
