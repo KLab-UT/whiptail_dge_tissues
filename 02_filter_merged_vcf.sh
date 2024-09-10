@@ -12,7 +12,7 @@
 
 # Author: Baylee Christensen
 # Date: 09/04/2024
-# Description: This script first filters the vcf file for quality. Then, it cuts the merged vcf file with the gff file generated through MiCGiG, where the matches create mito_etc and the nonmatches go into a different vcf file
+# Description: This script first filters the vcf file for quality. Then, it creates a bed file from the gff file. 
 # Usage for cmd line: nohup bash 02_filter_merged_vcf.sh
 # Usage for sbatch: sbatch 02_filter_merged_vcf.sh
 
@@ -47,7 +47,7 @@ attr_filtration_gff() {
                 blast_id = id[1];  
             }
         }
-        print $1, $2, $3, $4, $5, $6, blast_id;  # Add the extracted blast_id to the BED file
+        print $1, $4, $5, blast_id;  # Add the extracted blast_id to the BED file
     }' "$gff_file" > "${bed_file}.temp"
 
     # Overwrite file with new data
@@ -64,37 +64,39 @@ attr_filtration_gff
 
 hard_variant_filtration {
   # Step 1: Get rid of low-quality (mean) genotyping:
-    vcftools --vcf "$1".vcf --out "$2"_HardFilterStep1 --minGQ 20 --recode --recode-INFO-all
-    mv "$2"_HardFilterStep1.recode.vcf "$2"_HardFilterStep1.vcf
-    echo "Post genotype Quality filtration $2 variants: $(grep -v "^#" "$2"_HardFilterStep1.vcf | wc -l)" >> Log.txt
+    vcftools --vcf "$1" --out "$2"_HFStep1 --minGQ 20 --recode --recode-INFO-all
+    mv "$2"_HFStep1.recode.vcf "$2"_HFStep1.vcf
+    echo "Post genotype Quality filtration $2 variants: $(grep -v "^#" "$2"_HFStep1.vcf | wc -l)" >> log.txt
+
   # Step 2: Get rid of low-depth individuals per site
-    vcftools --vcf "$2"_HardFilterStep1.vcf --out "$2"_HardFilterStep2 --minDP 10 --recode --recode-INFO-all
-    mv "$2"_HardFilterStep2.recode.vcf "$2"_HardFilterStep2.vcf
-    echo "Post depth filtration $2 variants: $(grep -v "^#" "$2"_HardFilterStep2.vcf | wc -l)" >> Log.txt
+    vcftools --vcf "$2"_HFStep1.vcf --out "$2"_HFStep2 --minDP 10 --recode --recode-INFO-all
+    mv "$2"_HFStep2.recode.vcf "$2"_HFStep2.vcf
+    echo "Post depth filtration $2 variants: $(grep -v "^#" "$2"_HFStep2.vcf | wc -l)" >> log.txt
+
   # Step 3: Get rid of multiallelic SNPs (more than 2 alleles):
-    bcftools view -m2 -M2 -v snps "$2"_HardFilterStep3.vcf > "$2"_HardFilterStep4.vcf
-    echo "Post multiallelic filtration $2 variants: $(grep -v "^#" "$2"_HardFilterStep4.vcf | wc -l)" >> Log.txt
+    bcftools view -m2 -M2 -v snps "$2"_HFStep2.vcf > "$2"_HFStep3.vcf
+    echo "Post multiallelic filtration $2 variants: $(grep -v "^#" "$2"_HFStep3.vcf | wc -l)" >> log.txt
   # Step 4: Get rid of low-frequency alleles- here just singletons:
-    vcftools --mac 2 --vcf "$2"_HardFilterStep4.vcf --recode --recode-INFO-all --out "$2"_HardFilterStep5
-    mv "$2"_HardFilterStep5.recode.vcf "$2"_HardFilterStep5.vcf
-    echo "Post singleton filtration $2 variants: $(grep -v "^#" "$2"_HardFilterStep5.vcf | wc -l)" >> Log.txt
+    vcftools --mac 2 --vcf "$2"_HFStep3.vcf --recode --recode-INFO-all --out "$2"_HFStep4
+    mv "$2"_HFStep4.recode.vcf "$2"_HFStep4.vcf
+    echo "Post singleton filtration $2 variants: $(grep -v "^#" "$2"_HFStep4.vcf | wc -l)" >> log.txt
   # Step 5: Remove sites missing high amounts of data
-    vcftools --max-missing 0.3 --vcf "$2"_HardFilterStep5.vcf --recode --recode-INFO-all --out "$2"_HardFilterStep6
-    mv "$2"_HardFilterStep6.recode.vcf "$2"_HardFilterStep6.vcf
-    echo "Post removal of sites with high missing data: $(grep -v "^#" "$2"_HardFilterStep6.vcf | wc -l)" >> Log.txt
+    vcftools --max-missing 0.3 --vcf "$2"_HFStep4.vcf --recode --recode-INFO-all --out "$2"_HFStep5
+    mv "$2"_HFStep5.recode.vcf "$2"_HFStep5.vcf
+    echo "Post removal of sites with high missing data: $(grep -v "^#" "$2"_HFStep5.vcf | wc -l)" >> log.txt
   # Finishing: Compress data
-    bgzip "$2"_HardFilterStep6.vcf
-    bcftools index -f "$2"_HardFilterStep6.vcf.gz
+    bgzip "$2"_HFStep5.vcf
+    bcftools index -f "$2"_HFStep5.vcf.gz
   # Move all stuff to it's own directory
     mkdir -p hard_filter_files
-    mv *HardFilter* hard_filter_files
+    mv *HF* hard_filter_files
 
 }
 
 
 # Call function
-#attr_filtration_gff
-hard_variant_filtration $VCF_FILE_PATH
+attr_filtration_gff
+hard_variant_filtration $VCF_FILE_PATH filtered_output
 
 module unload bedops/2.4.41
 module unload htslib/1.18
