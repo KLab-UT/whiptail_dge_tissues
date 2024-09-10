@@ -11,5 +11,5 @@
 
 #insert info here later
 
-VCF_FILE_PATH=/scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/vcf_output/merged_output.vcf
-BED_FILE_PATH=/uufs/chpc.utah.edu/common/home/u6057891/whiptail_dge_tissues/MiCFiG.bed.gz
+VCF_FILE_PATH=/scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/filtration/hard_filtration
+BED_FILE_PATH=/scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/filtration/MiCFiG.bed.gz
