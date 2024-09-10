@@ -1,7 +1,7 @@
 # Questions:
 
 1. Need to attach the correct link to the code that was referenced
-2. Retaining the 'EFTS' from each gff file... hope that is correct 
+2. Retaining the 'EFTS' from each gff file... hope that is correct
 Chr_2	AUGUSTUS gene 151270976 151279377 . + . ID=Marm_12464;blast_id="sp|P43897|EFTS_HUMAN";interproscan_id="IPR001816
 ";eggnog_id="translation_elongation_factor_activity"
 
@@ -13,7 +13,7 @@ We need to:
 2- convert the MiCFiG GFF to a BED file
 3- filter variants for position
 
-Useful code for each of these can be found on an old script I wrote: https://bedops.readthedocs.io/en/latest/content/installation.html#linux
+Useful code for each of these can be found on an old script I wrote: https://github.com/rklabacka/ThamnophisElegans_FunctionalGenomics2021/blob/main/Examining-Sequence-Variation/reads2vcf/reads2vcf.sh
 
 For step 1, use the function "hard-variant-filtration" function to filter variants (you can skip step 3).
 
