@@ -1,3 +1,11 @@
+# Questions:
+
+1. Need to attach the correct link to the code that was referenced
+2. Retaining the 'EFTS' from each gff file... hope that is correct 
+Chr_2	AUGUSTUS gene 151270976 151279377 . + . ID=Marm_12464;blast_id="sp|P43897|EFTS_HUMAN";interproscan_id="IPR001816
+";eggnog_id="translation_elongation_factor_activity"
+
+
 05 Sep 2024
 
 We need to:
