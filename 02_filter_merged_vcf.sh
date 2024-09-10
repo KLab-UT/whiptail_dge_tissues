@@ -21,6 +21,7 @@ VCF_FILE_PATH=/scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/vcf_
 GFF_FILE_PATH=/uufs/chpc.utah.edu/common/home/u6057891/whiptail_dge_tissues/MiCFiG.gff
 
 module load bedops/2.4.41
+module load htslib/1.18
 
 attr_filtration_gff() {
     local gff_file=$GFF_FILE_PATH
@@ -47,12 +48,16 @@ attr_filtration_gff() {
         print $1, $2, $3, $4, $5, $6, blast_id;  # Add the extracted blast_id to the BED file
     }' "$gff_file" > "${bed_file}.temp"
 
+    # Overwrite file with new data
+    mv "${bed_file}.temp" "$bed_file"
+
     # Compress and index the final BED file
-    #bgzip "$bed_file"
-    #tabix -p bed "${bed_file}.gz"
+    bgzip "$bed_file"
+    tabix -p bed "${bed_file}.gz"
 }
 
 # Call function
 attr_filtration_gff
 
 module unload bedops/2.4.41
+module unload htslib/1.18
