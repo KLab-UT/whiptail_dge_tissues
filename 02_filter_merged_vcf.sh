@@ -55,8 +55,7 @@ attr_filtration_gff() {
     mv "${bed_file}.temp" "$bed_file"
 
     # Compress and index the final BED file
-    bgzip "$bed_file"
-    tabix -p bed "${bed_file}.gz"
+    tabix -p bed "${bed_file}"
 }
 
 hard_variant_filtration (){
@@ -90,8 +89,7 @@ hard_variant_filtration (){
     echo "Post removal of sites with high missing data: $(grep -v "^#" "$3/${2}_HFStep5.vcf" | wc -l)" >> "$3/log.txt"
 
     # Finishing: Compress and index data
-    bgzip "$3/${2}_HFStep5.vcf"
-    bcftools index -f "$3/${2}_HFStep5.vcf.gz"
+    bcftools index -f "$3/${2}_HFStep5.vcf"
 }
 
 mkdir -p $OUTPUT_FILE_PATH
