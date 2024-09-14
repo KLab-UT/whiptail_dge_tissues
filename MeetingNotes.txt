@@ -1,3 +1,32 @@
+13 Sep 2024
+
+    To quantify allele-biased allele expression, we will look at the values of DP4 in the VCF. This value shows the depth of coverage for each allele, with the first two values being the depth for the reference allele (fwd and rev) and the second two values being the depth for the alternate allele (fwd and rev).
+
+    In order to calculate these, we will pull the values from each individual in the filtered vcf. However, this filtered vcf should NOT have gone through a filtration step that filters based on mapping quality (which would introduce a bias towards the reference allele). Also, this vcf should have the combined information from all samples for a single tissue (i.e., there should be a merged vcf for each tissue type).
+
+    The output from this data collection should be a CSV for each tissue type constructed as follows:
+
+    File name:
+    Liver.csv
+    Contents:
+    SampleID,Chromosome,Position,Mito,RefAD,AltAD,DeltaAD
+    Am_01,Chr_1,245232,1,240,222,18
+
+    File name:
+    Heart.csv
+    Contents:
+    SampleID,Chromosome,Position,Mito,RefAD,AltAD,DeltaAD
+    Am_01,Chr_1,245232,1,123,122,-1
+
+    The RefAD should be the sum of the first two DP4 values. The AltAD should be the sum of the second two DP4 values. The DeltaAD field should be the value of AltAD - RefAD. Thought: We should also consider only keeping SNPs where all individuals are represented (e.g., there is no missing data).
+
+    After creating a csv for each tissue type, we will want to combine all of these and add a "TissueType" field to the combined csv:
+
+    File name:Combined.csv
+
+    SampleID,Chromosome,Position,Mito,RefAD,AltAD,DeltaAD
+    Am_01,Chr_1,245232,1,240,222,18
+
 # Questions:
 
 1. Do you need to modify script so it keeps our new files we are adding?
