@@ -43,7 +43,8 @@ for BAM_FILE in $(ls "$DIRECTORY" | grep -E '^Am_[0-9]{2}\.bam$'); do
   VCF_FILE="$OUTPUT_DIR/${BAM_FILE%.bam}.vcf"
 
   # Run bcftools to call variants
-  bcftools mpileup -f "$REFERENCE" "$DIRECTORY/$BAM_FILE" | bcftools call -mv -Ov -o "$VCF_FILE"
+  bcftools mpileup -f "$REFERENCE" "$DIRECTORY/$BAM_FILE" --annotate FORMAT/AD,FORMAT/DP,FORMAT/SP | \
+  bcftools call -mv -Ov -o "$VCF_FILE"
 
   echo "Variants called for $BAM_FILE and saved to $VCF_FILE."
 done
