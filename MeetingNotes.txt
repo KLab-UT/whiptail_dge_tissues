@@ -8,6 +8,19 @@
     > merged_data$GeneType <- "Mito"
     > write.csv(merged_data, "updated_combined_variants.csv", row.names = FALSE)
 
+    Action items:a
+    0. Add R code to your scripts (so that the CSVs being output have the new fields "GeneType", "Tissue", and "FieldTag")
+      -- Remember that these R scripts include the sample_info.csv, so you'll want to put that somewhere in the github repository where it can be securely stored and referenced
+      -- Also, change math so that DeltaAD field in the CSV is RefAD - AltAD
+    1. Rename combined_variants.csv to mito_combined_variants.csv
+    2. Create CSV for nonmito variants (named nonmito_combined_variants.csv)
+    3. Merge mito_combined_variants.csv and nonmito_combined_variants.csv into new CSV called combined_variants.csv
+    4. Create new CSV called 'DeltaAD_averages.csv' that only has fields "Chromosome", "Position", "Gene", "GeneType", "RefAD", "AltAD", "DeltaAD"
+    5. Remove duplicate rows from DeltaAD_averages.csv
+
+    Bonus item:
+    Create Box and whisker plot with categories "Mito" and "NonMito" that plots the DeltaAD values from DeltaAD_averages.csv
+
 13 Sep 2024
 
     To quantify allele-biased allele expression, we will look at the values of DP4 in the VCF. This value shows the depth of coverage for each allele, with the first two values being the depth for the reference allele (fwd and rev) and the second two values being the depth for the alternate allele (fwd and rev).
