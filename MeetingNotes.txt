@@ -1,3 +1,13 @@
+19 Sep 2024
+    Baylee created a csv called "combined_variants.csv" that contained all of the variants for each of the individuals 1-15 and 25-27. Randy forgot that these weren't different individuals, rather they were many of the same individuals with different tissues. So to add that information, we included a excel file under "sample_info" that has the connection between the sample ID (the excel file includes Am_ in the name), the Field ID (marked as "Sample" in the excel file) and the tissue type.
+    Using a few R commands, I added the field ID, tissue type, and gene type to the combined_variants.csv. I used the CSV that is currently in the same directory as the .vcf and is called "sample_info.csv". Currently the new file is called updated_combined_variants.csv. Here are the R commands I used:
+
+    > combined_variants <- read.csv("combined_variants.csv", stringsAsFactors = FALSE)
+    > sample_info <- read.csv("sample_info.csv", stringsAsFactors = FALSE)
+    > merged_data <- merge(combined_variants, sample_info, by = "SampleID", all.x = TRUE)
+    > merged_data$GeneType <- "Mito"
+    > write.csv(merged_data, "updated_combined_variants.csv", row.names = FALSE)
+
 13 Sep 2024
 
     To quantify allele-biased allele expression, we will look at the values of DP4 in the VCF. This value shows the depth of coverage for each allele, with the first two values being the depth for the reference allele (fwd and rev) and the second two values being the depth for the alternate allele (fwd and rev).
