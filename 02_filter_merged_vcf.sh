@@ -4,7 +4,7 @@
 #SBATCH --partition=lonepeak
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=19:00:00
+#SBATCH --time=39:00:00
 #SBATCH -o out.varfilter-%j.txt-%N
 #SBATCH -e err.varfilter-%j.txt-%N
 

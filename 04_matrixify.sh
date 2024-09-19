@@ -4,7 +4,7 @@
 #SBATCH --partition=lonepeak
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=19:00:00
+#SBATCH --time=29:00:00
 #SBATCH -o out.matrixify-%j.txt-%N
 #SBATCH -e err.matrixify-%j.txt-%N
 
