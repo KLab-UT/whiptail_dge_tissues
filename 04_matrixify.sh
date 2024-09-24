@@ -33,6 +33,20 @@ done
 
 # Calls python script to output the combined matrix
 python3 ${PY_SCRIPT_PATH}/04_p_matrixify.py -i "$VCF_BED_FILE_PATH" -o "$OUTPUT_FILE_PATH" -f "$FORMAT_TYPE"	 
-#Rscript ${R_SCRIPT_PATH}/04_r_matrixify.R $OUTPUT_FILE_PATH 
+
+
+# Ensure Python script ran successfully
+if [[ $? -ne 0 ]]; then
+    echo "Python script failed. Exiting."
+    exit 1
+fi
+
+# Calls R script with the output file from the Python script
+Rscript "${R_SCRIPT_PATH}/04_r_matrixify.R" "$OUTPUT_FILE_PATH"
+
+if [[ $? -ne 0 ]]; then
+    echo "R script failed. Exiting."
+    exit 1
+fi
 
 echo "Complete"
