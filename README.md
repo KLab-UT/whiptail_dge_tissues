@@ -2,7 +2,7 @@
 
 This is a project for the Advanced Bioinformatics course at Utah Tech University (BIOL 4310)
 ## Differential Gene Expression for Heart, Lung, and Skeletal Muscle 2024
-Authors: Syrus Miner, Baylee Christensen, Seun Onileowo
+Authors: Baylee Christensen, Syrus Miner, Seun Onileowo
 
 Completed: April 2024
 ## Contents
