@@ -1,3 +1,16 @@
+26 Sep 2024
+    We forgot to mark duplicates, so we need to go upstream in the pipeline to do this. This should be the step immediately following the "merge_merged_and_unmerged_merges" step (which was after mapping reads). In other words, the Am_{i}.bam files need to be ran through a function that marks duplicates in a newly-output bam file
+    This can be done using picard tools, which is a module available on the CHPC. Here is how to use it:
+
+        module load picard
+        java -Xmx8g -jar $PICARD MarkDuplicates \
+        REMOVE_DUPLICATES=true \
+        I=Am_${i}.bam \
+        O=Am_${i}_removed_duplicates.bam \
+        M=Am_${i}_marked_dup_metrics.txt \
+
+    The output from this can then be used to call SNPs
+
 19 Sep 2024
     Baylee created a csv called "combined_variants.csv" that contained all of the variants for each of the individuals 1-15 and 25-27. Randy forgot that these weren't different individuals, rather they were many of the same individuals with different tissues. So to add that information, we included a excel file under "sample_info" that has the connection between the sample ID (the excel file includes Am_ in the name), the Field ID (marked as "Sample" in the excel file) and the tissue type.
     Using a few R commands, I added the field ID, tissue type, and gene type to the combined_variants.csv. I used the CSV that is currently in the same directory as the .vcf and is called "sample_info.csv". Currently the new file is called updated_combined_variants.csv. Here are the R commands I used:

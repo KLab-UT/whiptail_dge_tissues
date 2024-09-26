@@ -38,7 +38,7 @@ echo "NOTE: Your output files will be located in $OUTPUT_DIR, NOT your current w
 # List files in the directory, grep for the pattern, and loop through each matching BAM file
 # Searches for pattern "Am_??.bam"
 
-for BAM_FILE in $(ls "$DIRECTORY" | grep -E '^Am_[0-9]{2}\.bam$'); do
+for BAM_FILE in $(ls "$DIRECTORY" | grep -E '^Am_[0-9]{2}\_removed_duplicates.bam$'); do
   # Define output VCF filename based on BAM filename
   VCF_FILE="$OUTPUT_DIR/${BAM_FILE%.bam}.vcf"
 
