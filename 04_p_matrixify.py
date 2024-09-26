@@ -11,7 +11,7 @@ args = parser.parse_args()
 
 def parse_vcf_bed(vcf_bed_file, output_csv, file_format):
     with open(vcf_bed_file, 'r') as infile, open(output_csv, 'w', newline='') as outfile:
-        writer = csv.writer(outfile)
+        writer = csv.writer(outfile))
         # Write CSV header
         writer.writerow(["SampleID", "Chromosome", "Position", "Gene", "RefAD", "AltAD", "DeltaAD", "GT:PL:DP:SP:AD"])
         
