@@ -14,9 +14,9 @@
 # Usage for cmd line: 
 
 # Usage for filetype with gene matches in sbatch: 
-# sbatch 04_matrixify.sh -v /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/spliced_vcfs/mito_gene_matches.vcf -o /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/matrix/mito_variants.csv -f gene_match
+# sbatch 04_matrixify.sh -v /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/spliced_vcfs/rd_mito_gene_matches.vcf -o /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/matrix/rd_mito_variants.csv -f gene_match
 # Usage for filetype with gene matches in sbatch: 
-# sbatch 04_matrixify.sh -v /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/spliced_vcfs/no_mito_gene_matches.vcf -o /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/matrix/no_mito_variants.csv -f no_match
+# sbatch 04_matrixify.sh -v /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/spliced_vcfs/rd_no_mito_gene_matches.vcf -o /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/matrix/rd_no_mito_variants.csv -f no_match
 
 PY_SCRIPT_PATH=/uufs/chpc.utah.edu/common/home/u6057891/whiptail_dge_tissues
 R_SCRIPT_PATH=/uufs/chpc.utah.edu/common/home/u6057891/whiptail_dge_tissues
@@ -48,5 +48,8 @@ if [[ $? -ne 0 ]]; then
     echo "R script failed. Exiting."
     exit 1
 fi
+
+
+
 
 echo "Complete"

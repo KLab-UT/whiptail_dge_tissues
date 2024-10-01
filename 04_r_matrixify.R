@@ -13,7 +13,7 @@ sample_info <- read.csv(sample_info_path, stringsAsFactors = FALSE)
 
 # Merge data based on SampleID and add the GeneType column
 merged_data <- merge(combined_variants, sample_info, by = "SampleID", all.x = TRUE)
-merged_data$GeneType <- "Mito"
+merged_data$GeneType <- ifelse(is.na(merged_data$Gene), "Other", "Mito")
 
 # Write the updated data to a CSV file
 write.csv(merged_data, updated_variants_path, row.names = FALSE)

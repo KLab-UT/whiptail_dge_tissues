@@ -11,7 +11,7 @@ args = parser.parse_args()
 
 def parse_vcf_bed(vcf_bed_file, output_csv, file_format):
     with open(vcf_bed_file, 'r') as infile, open(output_csv, 'w', newline='') as outfile:
-        writer = csv.writer(outfile))
+        writer = csv.writer(outfile)
         # Write CSV header
         writer.writerow(["SampleID", "Chromosome", "Position", "Gene", "RefAD", "AltAD", "DeltaAD", "GT:PL:DP:SP:AD"])
         
@@ -39,7 +39,7 @@ def parse_vcf_bed(vcf_bed_file, output_csv, file_format):
                 gene = line[-1]  # Gene is the last column
             elif file_format == "no_match":
                 # For the second file format without gene matches 
-                gene = "N/A"  # No gene column, so we'll set it as N/A
+                gene = "NA"  # No gene column, so we'll set it as N/A
 
 
             # Process each sample (columns 9 to 26 for 'first', adjust if different for 'second')
