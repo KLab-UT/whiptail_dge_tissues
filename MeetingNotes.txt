@@ -5,7 +5,7 @@
         1. Create a text file called "37_mito_genes.csv" that contains all of genes within the mitochondrial genome and the encoded product (protein, RNA) in two columns called "MitoGene" and "EncodedProduct"
         2. Create a text file called "nucmt_interactions.csv" that contains four fields: the "GeneName" (this is the name of our gene; it may be repeated throughout the file for each interaction the gene has), "Interaction" (the name of the gene being interacted with; this may be repeated in different lines for different "GeneNames" [i.e., multiple genes in GeneName might interact with the same gene]), "EncodedProduct" (protein, RNA), and InteractionType" (if this is available- if not, just leave this last one off)
         3. We then need to iterate through the nucmt_interactions.csv file and check each line to see if the "Interaction" line contains gene names that are present in the "MitoGene" line of "37_mito_genes.csv". If there is a match, then the whole row from nucmt_interactions.csv should be copied to the file "mitonuclear_interactions.csv"
-        ~~4. The "no_mito_variants_updated.csv" file states that all the genes are "Mito". This needs to be changed in the script that generates this file.~~
+       <del> 4. The "no_mito_variants_updated.csv" file states that all the genes are "Mito". This needs to be changed in the script that generates this file.<del>
         (This issue has been resolved 2 weeks ago, reference rd_no_mito_variants_updated and rd_mito_variants_updated)
 
 
