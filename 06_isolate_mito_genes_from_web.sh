@@ -13,23 +13,32 @@ FIRST_FILE=/scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/filtere
 SECOND_FILE=/scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/matrix/combined_variants.csv
 OUT_DIR=/scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/
 
-awk -F',' -v second_file="$FIRST_FILE" '
-    BEGIN {
-        OFS = ","; 
-        # Read second file into an array
-        while (getline < second_file) {
-            if (NR > 1) { 
-                gene = $4; 
-                data[gene] = $0;  # Store all columns for each gene in the array
-            }
-        }
-    }
-    # Process the first file and check if the gene from column 7 matches the gene in second file
-    {
-        gene = $7; 
-        if (gene in data) {
-            print $0, data[gene];  # Print the matching row from both files
-        }
-    }
-' $SECOND_FILE > ${OUT_DIR}/spliced_output.csv
 
+
+#awk -F',' -v second_file="$FIRST_FILE" '
+#    BEGIN {
+#        OFS = ","; 
+#        # Read second file into an array
+#        while (getline < second_file) {
+#            if (NR > 1) { 
+#                gene = $4; 
+#                data[gene] = $0;  # Store all columns for each gene in the array
+#            }
+#        }
+#    }
+    # Process the first file and check if the gene from column 7 matches the gene in second file
+#    {
+#        gene = $7; 
+#        if (gene in data) {
+#            print $0, data[gene];  # Print the matching row from both files
+#        }
+#    }
+#' $SECOND_FILE > ${OUT_DIR}/spliced_output.csv
+
+
+
+# Control V, down or up as many lines as you want, then shift i '#'
+
+
+# Grab only unique genes from mito from rd_mito_variants_updated.csv
+cut -d',' -f4 your_file.txt | sort | uniq | paste -sd ',' > unique_gene_list.txt
