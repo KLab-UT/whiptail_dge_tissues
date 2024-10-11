@@ -1,0 +1,1 @@
+"ATP8","ATP6","CO1","CO2","CO3","CYB","ND1","ND2","ND3","ND4L","ND4","ND5","ND6","RNR2","TA","TR","TN","TD","TC","TE","TQ","TG","TH","TI","TL1","TL2","TK","TM","TF","TP","TS1","TS2","TT","TW","TY","TV","RNR1","RNR2"
