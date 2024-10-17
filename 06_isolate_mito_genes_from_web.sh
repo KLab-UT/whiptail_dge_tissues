@@ -9,4 +9,4 @@ cut -d',' -f4 $VARIANT_PATH | sort | uniq | paste -sd ',' > unique_gene_list.txt
 
 # Format 37 mito genes so in appropriate format for gene interaction API
 awk 'NR > 1 { sub(/^MT-/, "", $1); print "\"" $1 "\"" }' $MITO_GENE_PATH | paste -sd, - > 37_mito_genes.txt
-
+# Call R Script here for fetching gene synonyms
