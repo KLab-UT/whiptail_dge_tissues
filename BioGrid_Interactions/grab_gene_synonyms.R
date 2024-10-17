@@ -52,6 +52,8 @@ for (gene in names(synonym_results)) {
 }
 
 # Convert the compiled list of genes and aliases into a formatted string
+
+all_genes_and_aliases <- unique(all_genes_and_aliases)
 all_genes_and_aliases_str <- paste0('"', paste(all_genes_and_aliases, collapse = '","'), '"')
 
 # Print the resulting dictionary and formatted string
