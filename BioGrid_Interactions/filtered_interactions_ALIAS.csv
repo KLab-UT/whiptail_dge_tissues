@@ -33,9 +33,7 @@ INTERACTION_ID,ENTREZ_GENE_A,ENTREZ_GENE_B,OFFICIAL_SYMBOL_A,OFFICIAL_SYMBOL_B,E
 142510,853427,853427,RNR2,RNR2,Two-hybrid,9774971,Zhao X (1998),Low Throughput,-
 143260,851109,854601,ATP10,ATP6,Affinity Capture-Western,14998992,Tzagoloff A (2004),Low Throughput,crosslinking
 143261,852177,854601,ATP1,ATP6,Affinity Capture-Western,14998992,Tzagoloff A (2004),Low Throughput,-
-143262,852177,854600,ATP1,ATP8,Affinity Capture-Western,14998992,Tzagoloff A (2004),Low Throughput,-
 143264,856027,854601,ATP4,ATP6,Affinity Capture-Western,14998992,Tzagoloff A (2004),Low Throughput,-
-143265,856027,854600,ATP4,ATP8,Affinity Capture-Western,14998992,Tzagoloff A (2004),Low Throughput,-
 145085,856898,854598,OXA1,COX1,Affinity Capture-Western,11250894,Hell K (2001),Low Throughput,crosslinker added
 145086,856898,854622,OXA1,COX2,Affinity Capture-Western,11250894,Hell K (2001),Low Throughput,crosslinker added
 145087,856898,854622,OXA1,COX2,Affinity Capture-Western,9482871,Hell K (1998),Low Throughput,crosslinker added
@@ -51,7 +49,6 @@ INTERACTION_ID,ENTREZ_GENE_A,ENTREZ_GENE_B,OFFICIAL_SYMBOL_A,OFFICIAL_SYMBOL_B,E
 147893,853033,854622,PHB1,COX2,Affinity Capture-Western,15525670,Tatsuta T (2005),Low Throughput,-
 148737,856027,854601,ATP4,ATP6,Reconstituted Complex,9425084,Spannagel C (1998),Low Throughput,-
 148738,856027,854601,ATP4,ATP6,Reconstituted Complex,9893937,Velours J (1998),Low Throughput,-
-152739,856027,854600,ATP4,ATP8,Co-purification,9867807,Arnold I (1999),Low Throughput,-
 153392,854598,854627,COX1,COX3,Co-fractionation,15921494,Horan S (2005),Low Throughput,-
 153393,854598,856448,COX1,COX6,Co-fractionation,15921494,Horan S (2005),Low Throughput,-
 153394,854598,855675,COX1,COX5A,Co-fractionation,15921494,Horan S (2005),Low Throughput,-
