@@ -89,7 +89,7 @@ Understanding gene expression across different tissue types is a crucial step to
    machine in the subdirectory with the same name as the repository. You now
    should navigate into this directory to use functions this repository has.
 
-### Step 2: Set working directory 
+### Step 2: Set working directory
 Where did you clone this github repository? That is now your working directory. From this working directory is where you will submit all of the functions required. The output files, AKA the RESULTS of these functions will be in:
 ```
 /scratch/general/nfs1/utu_4310/whiptail_dge_working_directory
@@ -100,14 +100,4 @@ Where did you clone this github repository? That is now your working directory. 
 sbatch s.run.sh -d /path/to/github/repository/clone/bash
 ```
 2. Ideally, this submits all of the jobs at once. It won't in this case, please view s.run.sh to see what line needs to be changed based off of your preferences.
-
-## Below is information from the last cohort who worked on this project in previous years.
-Gene expression in species varies across tissue types and in the same tissues across populations. In this dataset we have two sets of transcriptomic data:
-
-Dataset 1: 17 individuals from three populations (skeletal muscle)
-
-Dataset 2: six individuals from a single population (heart, liver, and skeletal muscle)
-
-Each of these datasets require read cleaning, mapping to an annotated genome, and obtaining a read count matrix for each gene. Analyses of the two datasets diverge at this point, where gene expression  differences between populations (Dataset 1) and differences between tissue types (Dataset 2) are examined.
-                                                              43,7          Bot
 
