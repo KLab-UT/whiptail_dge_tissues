@@ -18,12 +18,31 @@ Authors: Baylee Christensen, Syrus Miner
 2. Draft documented and reproducible bioinformatic pipeline to generate results
 3. Present research in oral engagement, showcasing best practice techniques
 
-### Project questions
-1. How does mitochondrial gene expression in Aspidoscelis tesselatus differ in
-   paternal and maternal lineages?
-2. We predict that paternal mitochondrial gene function will be downregulated in
-   aspidoscelis tesselatus because..
-3.
+### Project questions and Focus
+How does mitochondrial gene expression in Aspidoscelis tesselatus differ in
+paternal and maternal lineages?
+
+We attempt to understand the mitochondrial respiration dynamics through gene
+expression in the mitochondrial genome and the mitonuclear genome.
+
+##### Interparental Incompatibility
+In this scenario, we would predict to see a higher or equal amount of
+paternal gene expression compared to maternal gene expression. A potential
+mechanism that could explain this would be paternal gene products are
+produced, but do not have the same compatibility with maternal gene
+products, as the paternal lineage is a 'different species' and therefore
+did not co-evolve with the maternal lineage of mitochondrial products.
+##### Intraparental Incompatibility
+In this scenario, we would predict to see a lower amount of gene expression in
+the paternal lineage compared to the maternal lineage. There are many mechanisms
+that could explain this scenario, one being that the maternal gene products that
+interact with each other is present but not functioning ideally. More maternal
+expression may be occurring in an attempt to accommodate for this insufficiency.
+
+### Hypothesis
+1. Lower mitonchondrial function is due to differing mitonuclear dynamics in the
+   unisexual species compared to asexual species
+
 ### Abstract
 Whiptail lizards exhibit a fascinating reproductive strategy known as parthenogenesis, where females reproduce asexually, producing genetically identical offspring without male contribution. This mode of reproduction has implications for mitochondrial function, as asexual species often display lower-quality mitochondrial activity compared to their sexually reproducing counterparts. In this study, we focus on the differential gene expression in mitochondrial genes among whiptail populations, aiming to uncover potential consequences of parthenogenesis on cellular function.
 
