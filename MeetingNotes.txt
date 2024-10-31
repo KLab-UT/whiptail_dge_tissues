@@ -1,3 +1,17 @@
+31 Oct 2024
+    Syrus and Baylee searched for interactions of the genes within the rd_mito_variants_updated.csv file with genes in the mitochondrial genome.
+    The gene file that contains all of the mitochondrial genes encoded by the mt genome called 37_mito_genes.csv.
+    A list version of this gene set that also includes aliases is called 37_mito_genes.txt.
+    Genes in rd_mito_variants_updated.csv (within the column "Genes") were checked to see if they interact with any of the genes in 37_mito_genes.txt
+    Interactions were stored in filtered_interactions.csv
+        filtered_interactions.csv contains a column called "OFFICIAL_SYMBOL_A" and "OFFICIAL_SYMBOL_B", each of which contain the genes involved in the interaction
+        However, the gene from rd_mito_variants_updated.csv (e.g., the query name) might be in "OFFICIAL_SYMBOL_A" or "OFFICIAL_SYMBOL_B"
+    Syrus is now taking the data from filtered_interactions.csv and merging it with rd_mito_variants_updated.csv so that:
+        1. Interaction data is included (the name of the gene that "Gene" interacts with along with the source of the interaction)
+        2. A new binary variable simply called "Interaction" (where 1 means interaction and 0 means no interaction)
+
+
+
 10 Oct 2024
     Randy added a script called stats_and_plots.r that takes the data csv files (mito_variants_updated.csv and no_mito_variants.csv) and creates plots to compare the allele-biased expression in mito genes and non_mito genes.
     (We should be using the files with the <rd> prefix for downstream analysis, as they are in the proper format)
