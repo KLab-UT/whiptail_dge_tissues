@@ -2,9 +2,10 @@
 
 
 # Small process, OK to run from head node 
-
+# Author: Baylee Christensen
 # Date: 10/01/2024
-# Description: Slight modifications of output for better reading in R
+# Description: This takes in two csv files from previous output, and combined them into one while preserving the header from the first file. It then compressed the combined input into a .gz file, named combined_variants.csv.gz 
+# Output: In {OUTPUT_DIR}/combined_variants.csv.gz
 # Usage for cmd line:
 
 
