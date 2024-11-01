@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Author: Baylee Christensen
+# Date: 10/12/24
+# Description: Grabs unique genes from mitochondrial variants file. Then does
+# some formatting for the mito-mito interacting genes
 
 
 VARIANT_PATH=/scratch/general/nfs1/utu_4310/whiptail_dge_working_directory/matrix/rd_mito_variants_updated.csv
