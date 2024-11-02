@@ -13,10 +13,10 @@
             2. A new binary variable simply called "Interaction" (where 1 means interaction and 0 means no interaction)
 
     Action items in order to get there:
-        Get VCF files for each of the tissue types
-        37_mito_genes.csv includes "MT-" before the gene names, whereas 37_mito_genes.txt doesn't. The "MT-" should be included.
-        The aliases for the 37_mito_genes need to be re-obtained (since we got them using genes that didn't have the "MT-" prefix
-        We also need to get aliases for the rd_mito_variants_updated.csv "Gene" field and use those when we are looking for interactions.
+        [DONE]Get VCF files for each of the tissue types
+        [DONE]37_mito_genes.csv includes "MT-" before the gene names, whereas 37_mito_genes.txt doesn't. The "MT-" should be included.
+        [DONE]The aliases for the 37_mito_genes need to be re-obtained (since we got them using genes that didn't have the "MT-" prefix
+        [DONE]We also need to get aliases for the rd_mito_variants_updated.csv "Gene" field and use those when we are looking for interactions.
         We need to re-create the "filtered_interactions.csv", making sure we only look at spots where "Gene" from rd_mito_variants_updated.csv interacts with the "MT-" genes contained in 37_mito_genes.txt (or their aliases)
 
 
