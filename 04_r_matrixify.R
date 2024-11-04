@@ -1,3 +1,9 @@
+# Author: Baylee Christensen
+# Date: 10/12/204
+# Description: This R script passes in arguments from 04_matrixify.sh, grabs the sample_info spreadsheet (which contains information about tissue type and individuals), adds a new column indicating type of gene, and saves updated data to a new csv file with '_updated'
+
+
+
 # Get the file paths from the command-line arguments
 args <- commandArgs(trailingOnly = TRUE)
 # The combined_variants_path is passed from bash script as input file, and if not provided, defaults to 'combined_varaints.csv'
