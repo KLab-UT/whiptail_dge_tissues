@@ -21,19 +21,19 @@ for index, row in variants_df.iterrows():
     interaction = 'no_interaction(0)'  # Default value
 
     # Check for exact matches in the interactions dataframe
-    matches_a = interactions_df['OFFICIAL_SYMBOL_A'] == gene
-    matches_b = interactions_df['OFFICIAL_SYMBOL_B'] == gene
+    matches_a = interactions_df['Official_Symbol_Interactor_A'] == gene
+    matches_b = interactions_df['Official_Symbol_Interactor_B'] == gene
 
     if matches_a.any() or matches_b.any():
         # Find the matching interaction(s)
-        interacting_genes = interactions_df.loc[matches_a | matches_b, ['OFFICIAL_SYMBOL_A', 'OFFICIAL_SYMBOL_B']]
+        interacting_genes = interactions_df.loc[matches_a | matches_b, ['Official_Symbol_Interactor_A', 'Official_Symbol_Interactor_B']]
 
         # Create a string with interactions
         for _, interact_row in interacting_genes.iterrows():
-            if interact_row['OFFICIAL_SYMBOL_A'] != gene:
-                interaction = f"{interact_row['OFFICIAL_SYMBOL_A']}_Interaction(1)"
-            elif interact_row['OFFICIAL_SYMBOL_B'] != gene:
-                interaction = f"{interact_row['OFFICIAL_SYMBOL_B']}_Interaction(1)"
+            if interact_row['Official_Symbol_Interactor_A'] != gene:
+                interaction = f"{interact_row['Official_Symbol_Interactor_A']}_Interaction(1)"
+            elif interact_row['Official_Symbol_Interactor_B'] != gene:
+                interaction = f"{interact_row['Official_Symbol_Interactor_B']}_Interaction(1)"
             break  # Only need one interaction for the new column
 
     interaction_results.append(interaction)
