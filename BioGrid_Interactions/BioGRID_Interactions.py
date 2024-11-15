@@ -26,6 +26,12 @@ params = {
     "includeInteractors": "true",  # Set to true to get any interaction involving EITHER gene, set to false to get interactions between genes
     "includeInteractorInteractions": "true",  # Set to true to get interactions between the geneList’s first order interactors
     "includeEvidence": "true",  # If false "evidenceList" is evidence to exclude, if true "evidenceList" is evidence to show
+    "taxID": 9606,
+    "includeHeader": "true",
+    "searchSynonyms": "true"
+    "interSpeciesExcluded": "true",
+    "includeEvidence": "false",
+    "evidenceList": "|".join(evidenceList),  # Exclude these two evidence types
 }
 
 # Additional options to try, you can uncomment them as necessary
