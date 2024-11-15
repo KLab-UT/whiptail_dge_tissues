@@ -12,8 +12,8 @@ filter_symbols = [
 ]
 
 # Filter out interactions where both symbols are in the filter list
-filtered_df = df[~(df['Official_Symbol_Interactor_A'].isin(filter_symbols) &
-                    df['Official_Symbol_Interactor_B'].isin(filter_symbols))]
+filtered_df = df[~(df['OFFICIAL_SYMBOL_A'].isin(filter_symbols) &
+                    df['OFFICIAL_SYMBOL_B'].isin(filter_symbols))]
 
 # Save the filtered DataFrame to a new CSV file
 filtered_df.to_csv('2_filtered_interactions.csv', index=False)
