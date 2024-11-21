@@ -1,3 +1,26 @@
+21 Nov 2024
+    To use information about interaction type, we are going to add another column to final_interactions.csv called "Interaction_Type". This will include information about whether the gene is involved with protein-protein interactions (P), DNA-protein interactions (D), or RNA-protein interactions (R). Here is the psuedocode Syrus plans to implement for this:
+
+for line in MitoCarta.csv:
+        if "polymerase" in line, then add Symbol from line to D_list
+        if "transcription*factor" in line, then add Symbol from line to D_list # See note below
+        if "ribosomal protein" in line, then add Symbol from line to R_list
+        if "tRNA synthetase" in line, then add Symbol from line to R_list
+
+# For "transcription*factor" step, you will probably need to use regular expressions
+# This is because some lines contain the phrase "transcription factor" while others
+# might say "transcription elongation factor" (or something similar)
+
+Create new field in final_interactions.csv called "Interaction_Type"
+
+for line in final_interactions.csv:
+        if Interaction_Binary == 1:
+            line.Interaction_Type = "P"
+        elif Gene in D_list:
+            line.Interaction_Type = "D"
+        elif Gene in R_list:
+            line.Interaction_Type = "R"
+
 14 Nov 2024
     Baylee, Syrus, and Randy all realized that there are many instances in our unique_gene_list.txt (the list of the Nmt genes that are mitochondrially targetting- these were identified using MiCFiG) where the gene name is NOT the official symbol. These gene names were obtained from the .gff for the A. marmoratus genome. An example is the GRP75 gene in the .gff file- this is an alias for HSPA9. Because BioGrid uses the official gene symbols, we need to change out the aliases for the    official symbol in the BioGrid analysis. To do this, we are adding a new column to the rd_mito_variants_updated.csv file called "official_symbol". This column will have the official symbol as it is listed in the MitoCarta database (which is the NCBI official symbol). This way we won't have to worry about using aliases in the BioGrid analysis.
 
