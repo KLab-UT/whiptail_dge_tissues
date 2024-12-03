@@ -1,3 +1,6 @@
+26 Nov 2024
+    Baylee and Randy realized that the csv called "combined_variants.csv" includes samples 16, 17, and 18 (which we were originally aiming to exclude, since they are from a different population). However, we came to the realization that it is fine to include all of the populations, given that we are calculating
+
 21 Nov 2024
     To use information about interaction type, we are going to add another column to final_interactions.csv called "Interaction_Type". This will include information about whether the gene is involved with protein-protein interactions (P), DNA-protein interactions (D), or RNA-protein interactions (R). Here is the psuedocode Syrus plans to implement for this:
 

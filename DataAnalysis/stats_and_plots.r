@@ -1,8 +1,8 @@
 library('ggplot2')
 library('dplyr')
 # Adjust path as needed
-setwd('~/Library/CloudStorage/OneDrive-UtahTechUniversity/School/Research/whiptail_dge_tissues')
-dat <- read.csv("combined_variants.csv.gz")
+setwd('~/Library/CloudStorage/OneDrive-UtahTechUniversity/School/Research/BioGrid_Interactions')
+dat <- read.csv("final_interactions_with_type.csv")
 
 lm_results <- lm(DeltaAD~GeneType, data = dat)
 
@@ -95,4 +95,66 @@ dat_tissue_boxplots <- ggplot(dat, aes(x = Tissue, y = DeltaAD)) +
 dat_tissue_boxplots
 ggsave("3_MITO_DGE/Figures/dat_tissue_boxplots.png", plot = dat_tissue_boxplots, width = 6, height = 8, dpi = 300)
 
+# Compare mito genes that interact vs those that don't
+dat_Mito <- dat[dat$GeneType == "Mito", ]
 
+
+lm_results <- lm(DeltaAD~Interaction_Binary, data = dat_Mito)
+
+dat_Mito$Interaction_Binary <- as.factor(dat_Mito$Interaction_Binary)
+dat_boxplots <- ggplot(dat_Mito, aes(x = Interaction_Binary, y = DeltaAD)) +
+  geom_violin(outlier.shape = NA, fill = "#00D8C4") +  # Add boxplot without outliers
+  labs(title = "Boxplot with Distribution of DeltaAD by GeneType",
+       x = "Gene Type",
+       y = "Allele-biased Expression") +
+  theme_classic() +
+  theme(
+    legend.position = "none",        # Remove the legend
+    axis.title.y = element_text(size = 1.5 * 11),  # Increase y-axis title font size by 50%
+    axis.text = element_text(size = 1.5 * 11),     # Increase axis text font size by 50%
+    axis.title.x = element_text(size = 1.5 * 11),  # Increase x-axis title font size
+    plot.title = element_text(size = 1.5 * 14)     # Increase plot title font size by 50%
+  )
+dat_boxplots
+
+# Compare different types of interacting genes
+dat_Interact <- dat_subset <- dat[dat$Interaction_Type != "", ]
+
+
+lm_results <- lm(DeltaAD~Interaction_Type, data = dat_Interact)
+
+dat_boxplots <- ggplot(dat_Interact, aes(x = Interaction_Type, y = DeltaAD)) +
+  geom_boxplot(outlier.shape = NA, fill = "#00D8C4") +  # Add boxplot without outliers
+  labs(title = "Boxplot with Distribution of DeltaAD by GeneType",
+       x = "Gene Type",
+       y = "Allele-biased Expression") +
+  theme_classic() +
+  theme(
+    legend.position = "none",        # Remove the legend
+    axis.title.y = element_text(size = 1.5 * 11),  # Increase y-axis title font size by 50%
+    axis.text = element_text(size = 1.5 * 11),     # Increase axis text font size by 50%
+    axis.title.x = element_text(size = 1.5 * 11),  # Increase x-axis title font size
+    plot.title = element_text(size = 1.5 * 14)     # Increase plot title font size by 50%
+  )
+dat_boxplots
+
+# Compare different types of interacting proteins
+dat_P <- dat_Interact[dat_Interact$Interaction_Type == "P", ]
+
+
+lm_results <- lm(DeltaAD~SubLocalization, data = dat_P)
+
+dat_boxplots <- ggplot(dat_P, aes(x = SubLocalization, y = DeltaAD)) +
+  geom_boxplot(outlier.shape = NA, fill = "#00D8C4") +  # Add boxplot without outliers
+  labs(title = "Boxplot with Distribution of DeltaAD by GeneType",
+       x = "Gene Type",
+       y = "Allele-biased Expression") +
+  theme_classic() +
+  theme(
+    legend.position = "none",        # Remove the legend
+    axis.title.y = element_text(size = 1.5 * 11),  # Increase y-axis title font size by 50%
+    axis.text = element_text(size = 1.5 * 11),     # Increase axis text font size by 50%
+    axis.title.x = element_text(size = 1.5 * 11),  # Increase x-axis title font size
+    plot.title = element_text(size = 1.5 * 14)     # Increase plot title font size by 50%
+  )
+dat_boxplots
